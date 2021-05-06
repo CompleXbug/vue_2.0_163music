@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapStatus } from "vuex"
+
 export default {
   // props: ["msg"],
   data() {
@@ -28,6 +30,9 @@ export default {
   },
   created() {
     // this.getSongsAPI();
+  },
+  computed: {
+    ...mapStatus(['currentMusicStatus'])
   },
   methods: {
     async getSongsAPI() {
@@ -46,6 +51,13 @@ export default {
       console.log(this.cmsg);
       this.getSongsAPI();
     },
+    currentMusicStatus: {
+      deep: true,
+      handler(currentMusicStatus) {
+        // 这里获得到当前点击的音乐状态，进行播放
+        console.log(currentMusicStatus)
+      }
+    }
   },
 };
 </script>

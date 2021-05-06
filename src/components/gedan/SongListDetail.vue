@@ -63,6 +63,7 @@
 
 <script>
 // import Player from "../bofangqi/Player";
+import { mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -84,6 +85,7 @@ export default {
     this.PlaylistDetailData();
   },
   methods: {
+    ...mapMutations(['SET_CURRENTMUSICID']),
     async PlaylistDetailData() {
       //   console.log(this.$route);
       const id = this.$route.params.id;
@@ -102,9 +104,13 @@ export default {
       // console.log(detail);
       this.SongsDetail = detail.songs;
     },
-    getSongId(row) {
-      // console.log(row.id);
-      this.Playerid = row.id;
+    getSongId({ id }) {
+      this.Playerid = id;
+      // 点击时修改当前播放的音乐状态
+      this.SET_CURRENTMUSICID({
+        id,
+        status: 1
+      })
     },
     play_all() {},
   },
