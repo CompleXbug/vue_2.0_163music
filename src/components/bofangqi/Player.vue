@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapStatus } from "vuex"
+import { mapState } from "vuex"
 
 export default {
   // props: ["msg"],
@@ -32,7 +32,7 @@ export default {
     // this.getSongsAPI();
   },
   computed: {
-    ...mapStatus(['currentMusicStatus'])
+    ...mapState(['currentMusicStatus'])
   },
   methods: {
     async getSongsAPI() {
